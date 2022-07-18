@@ -4,14 +4,9 @@ using System.Text;
 
 namespace TGL_P2.Models
 {
-    public enum ATTACK_RESULT
-    {
-        HITTED,
-        MISSED,
-        KILLED,
-        IMPOSSIBLE
-    }
-
+    /// <summary>
+    /// Base class of Monster.
+    /// </summary>
     public abstract class Monster
     {
         public EventHandler<MonsterEventArgs> MonsterEventHandler;

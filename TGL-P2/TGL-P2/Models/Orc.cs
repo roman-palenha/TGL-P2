@@ -5,6 +5,10 @@ using TGL_P2.Interfaces;
 
 namespace TGL_P2.Models
 {
+    /// <summary>
+    /// Model of Orc.
+    /// Cannot attack models realizing IFlyable.
+    /// </summary>
     public class Orc : Monster, IWalkable
     {
         public Orc(string name, int health, int damage, int agility)

@@ -5,6 +5,10 @@ using TGL_P2.Interfaces;
 
 namespace TGL_P2.Models
 {
+    /// <summary>
+    /// Model of Dragon.
+    /// Cannot attack models realizing ICrawlable.
+    /// </summary>
     public class Dragon : Monster, IFLyable
     {
         public Dragon(string name, int health, int damage, int agility)

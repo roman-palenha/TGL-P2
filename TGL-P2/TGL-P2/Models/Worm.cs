@@ -5,6 +5,10 @@ using TGL_P2.Interfaces;
 
 namespace TGL_P2.Models
 {
+    /// <summary>
+    /// Model of Worm.
+    /// Cannot attack models realizing IFlyable.
+    /// </summary>
     public class Worm : Monster, ICrawlable
     {
         public Worm(string name, int health, int damage, int agility)

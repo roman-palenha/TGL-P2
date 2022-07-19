@@ -24,18 +24,17 @@ namespace TGL_P2.Models
             if (res)
             {
                 enemy.DealDamage(Damage);
-                MonsterEventHandler += OnAttack;
+                MonsterAttacked += OnHitted;
                 if (enemy.HP <= 0)
                 {
-                    MonsterEventHandler += OnKilled;
+                    MonsterAttacked += OnKilled;
                 }
             }
             else
             {
-                MonsterEventHandler += OnMissed;
+                MonsterAttacked += OnMissed;
             }
-            MonsterEventHandler(this, new MonsterEventArgs { Main = this, Enemy = enemy });
-            MonsterEventHandler = null;
+            OnAttacked(this, new MonsterEventArgs { Main = this, Enemy = enemy });
         }
 
         public void Fly()

@@ -9,7 +9,8 @@ namespace TGL_P2.Models
     /// </summary>
     public abstract class Monster
     {
-        public EventHandler<MonsterEventArgs> MonsterEventHandler;
+        public delegate void MonsterEventHandler(object sender, MonsterEventArgs args);
+        public event MonsterEventHandler MonsterAttacked;
         public string Name { get; }
         public int HP { get; private set;  }
         public int Damage { get; }
@@ -29,7 +30,7 @@ namespace TGL_P2.Models
                 HP -= hp;
         }
 
-        protected void OnAttack(object sender, MonsterEventArgs args)
+        protected void OnHitted(object sender, MonsterEventArgs args)
         {
             Console.WriteLine($"{args.Main.GetType().Name} {args.Main.Name} hits {args.Enemy.GetType().Name} {args.Enemy.Name} and damaged {args.Main.Damage} points.");
         }
@@ -43,6 +44,13 @@ namespace TGL_P2.Models
         {
             Console.WriteLine($"{args.Main.GetType().Name} {args.Main.Name} killed {args.Enemy.Name}.");
         }
+
+        protected void OnAttacked(object sender, MonsterEventArgs args)
+        {
+            if(MonsterAttacked != null)
+                MonsterAttacked(this, args);
+        }
+
         abstract public void Attack(Monster enemy);
         abstract public void Move();
     }

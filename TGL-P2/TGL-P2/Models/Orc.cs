@@ -21,21 +21,20 @@ namespace TGL_P2.Models
                 return;
 
             var res = new Random().Next(enemy.Agility + enemy.Damage + 1) > (enemy.Agility + enemy.Damage) * 0.2;
-            if(res)
+            if (res)
             {
                 enemy.DealDamage(Damage);
-                MonsterEventHandler += OnAttack;
+                MonsterAttacked += OnHitted;
                 if (enemy.HP <= 0)
                 {
-                    MonsterEventHandler += OnKilled;
+                    MonsterAttacked += OnKilled;
                 }
-            } 
+            }
             else
             {
-                MonsterEventHandler += OnMissed;
+                MonsterAttacked += OnMissed;
             }
-            MonsterEventHandler(this, new MonsterEventArgs { Main = this, Enemy = enemy });
-            MonsterEventHandler = null;
+            OnAttacked(this, new MonsterEventArgs { Main = this, Enemy = enemy });
         }
 
         public override void Move()
